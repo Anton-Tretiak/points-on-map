@@ -3,5 +3,6 @@ export interface Data {
   name: string,
   description: string,
   latitude: string,
-  longitude: string
+  longitude: string,
+  photo: string
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// import { Data } from './Types/database_data';
+
+import { PlacesList } from './components/PlacesList/PlacesList';
 
 export const App: React.FC = () => {
   const [data, setData] = useState([]);
@@ -22,17 +23,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="App">
-      {data.map((item: any) => {
-        return (
-          <div key={item.id}>
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
-            <span>latitude: {item.latitude}</span>
-            <br/>
-            <span>longitude: {item.longitude}</span>
-          </div>
-        );
-      })}
+      <PlacesList data={data} />
     </div>
   );
 };
