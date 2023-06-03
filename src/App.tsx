@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import './App.scss';
 
 import { PlacesList } from './components/PlacesList/PlacesList';
+import { MapBlock } from './components/MapBlock/MapBlock';
 
 export const App: React.FC = () => {
   const [data, setData] = useState([]);
@@ -23,7 +25,13 @@ export const App: React.FC = () => {
 
   return (
     <div className="App">
-      <PlacesList data={data} />
+      <div className="App__sidebar">
+        <PlacesList data={data} />
+      </div>
+
+      <div className="App__map">
+        <MapBlock />
+      </div>
     </div>
   );
 };

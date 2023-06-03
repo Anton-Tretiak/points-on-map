@@ -1,0 +1,12 @@
+.App {
+  display: flex;
+  height: 100vh;
+
+  &__sidebar {
+    width: 30%;
+  }
+
+  &__map {
+    width: 70%;
+  }
+}
