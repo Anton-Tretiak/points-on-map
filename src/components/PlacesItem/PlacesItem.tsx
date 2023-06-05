@@ -1,26 +1,59 @@
 import React from 'react';
+import './PlacesItem.scss';
 
 import { Data } from '../../Types/database_data';
+import { LatLngLiteral } from 'leaflet';
 
 type Props = {
   place: Data;
+  onCoordsChange: (coordsObj: LatLngLiteral) => void;
+  activeId: number;
+  onButtonClick: (itemId: number) => void;
 };
 
-export const PlacesItem: React.FC<Props> = ({ place }) => {
+export const PlacesItem: React.FC<Props> = ({
+  place,
+  onCoordsChange,
+  activeId,
+  onButtonClick,
+}) => {
   return (
-    <div key={place.id} className='box'>
+    <div className='box'>
       <div className='wrapper'>
         <div className='places__container'>
           <h1>{place.name}</h1>
 
           <div className='places__buttons'>
-            <button className='button is-primary is-small'>
-              Show on the map
-            </button>
+              {activeId === place.id
+                ? (
+                  <button
+                    id='modifiedButton'
+                    className='button is-danger is-small'
+                    onClick={() => {
+                      onCoordsChange({ lat: 0, lng: 0 });
 
-            <button className='button is-danger is-small'>
-              Hide
-            </button>
+                      onButtonClick(0);
+                    }}
+                  >
+                    Hide
+                  </button>
+                )
+                : (
+                  <button
+                    id='modifiedButton'
+                    className='button is-primary is-small'
+                    onClick={() => {
+                      onCoordsChange({
+                        lat: Number(place.latitude),
+                        lng: Number(place.longitude),
+                      });
+
+                      onButtonClick(place.id);
+                    }}
+                  >
+                    Show on the map
+                  </button>
+                )}
           </div>
         </div>
 
