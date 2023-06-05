@@ -6,15 +6,17 @@ import { LatLngLiteral } from 'leaflet';
 
 type Props = {
   place: Data;
-  onCoordsChange: (coordsObj: LatLngLiteral) => void;
   activeId: number;
+  isModalOpen: boolean;
+  onCoordsChange: (coordsObj: LatLngLiteral) => void;
   onButtonClick: (itemId: number) => void;
 };
 
 export const PlacesItem: React.FC<Props> = ({
   place,
-  onCoordsChange,
   activeId,
+  isModalOpen,
+  onCoordsChange,
   onButtonClick,
 }) => {
   return (
@@ -34,6 +36,7 @@ export const PlacesItem: React.FC<Props> = ({
 
                       onButtonClick(0);
                     }}
+                    disabled={isModalOpen}
                   >
                     Hide
                   </button>

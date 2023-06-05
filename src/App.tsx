@@ -9,6 +9,8 @@ import { MapBlock } from './components/MapBlock/MapBlock';
 export const App: React.FC = () => {
   const [data, setData] = useState([]);
   const [coords, setCoords] = useState<LatLngLiteral>({ lat: 0, lng: 0 });
+  const [activeId, setActiveId] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -30,17 +32,39 @@ export const App: React.FC = () => {
     setCoords(coordsObj);
   };
 
+  const handleButtonClick = (itemId: number) => {
+    setActiveId(itemId);
+  };
+
+  const handleMarkerClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="App">
       <div className="App__sidebar">
         <PlacesList
           data={data}
+          activeId={activeId}
+          isModalOpen={isModalOpen}
           onCoordsChange={handleCoordsChange}
+          onButtonClick={handleButtonClick}
         />
       </div>
 
       <div className="App__map">
-        <MapBlock coords={coords} />
+        <MapBlock
+          coords={coords}
+          data={data}
+          activeId={activeId}
+          isModalOpen={isModalOpen}
+          onMarkerClick={handleMarkerClick}
+          onCloseModal={handleCloseModal}
+        />
       </div>
     </div>
   );
