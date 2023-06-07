@@ -1,20 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-
-interface FormType {
-  name: string;
-  description: string;
-  latitude: string;
-  longitude: string;
-  photo: string;
-}
-
-interface Errors {
-  name: string;
-  latitude: string;
-  longitude: string;
-  photo: string;
-}
+import { FormType, Errors } from '../../Types/Form';
 
 export const AddFrom: React.FC = () => {
   const [formData, setFormData] = useState<FormType>({
