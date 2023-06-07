@@ -9,7 +9,7 @@ type Props = {
 
 export const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
   return (
-    <div className={`modal ${isOpen ? 'is-active' : ''}`}>
+    <div className={`modal modal-info ${isOpen ? 'is-active' : ''}`}>
       <div className="modal-background" onClick={onClose}></div>
 
       <div className="modal-content">
