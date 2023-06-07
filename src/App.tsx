@@ -10,11 +10,11 @@ export const App: React.FC = () => {
   const [data, setData] = useState([]);
   const [coords, setCoords] = useState<LatLngLiteral>({ lat: 0, lng: 0 });
   const [activeId, setActiveId] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [data]);
 
   const fetchData = async() => {
     try {
@@ -37,11 +37,11 @@ export const App: React.FC = () => {
   };
 
   const handleMarkerClick = () => {
-    setIsModalOpen(true);
+    setIsInfoModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsInfoModalOpen(false);
   };
 
   return (
@@ -50,7 +50,7 @@ export const App: React.FC = () => {
         <PlacesList
           data={data}
           activeId={activeId}
-          isModalOpen={isModalOpen}
+          isInfoModalOpen={isInfoModalOpen}
           onCoordsChange={handleCoordsChange}
           onButtonClick={handleButtonClick}
         />
@@ -61,7 +61,7 @@ export const App: React.FC = () => {
           coords={coords}
           data={data}
           activeId={activeId}
-          isModalOpen={isModalOpen}
+          isInfoModalOpen={isInfoModalOpen}
           onMarkerClick={handleMarkerClick}
           onCloseModal={handleCloseModal}
         />

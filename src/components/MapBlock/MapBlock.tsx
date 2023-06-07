@@ -15,7 +15,7 @@ type Props = {
   data: Data[];
   coords: LatLngLiteral;
   activeId: number;
-  isModalOpen: boolean;
+  isInfoModalOpen: boolean;
   onMarkerClick: () => void;
   onCloseModal: () => void;
 };
@@ -24,25 +24,25 @@ export const MapBlock: React.FC<Props> = ({
   coords,
   data,
   activeId,
-  isModalOpen,
+  isInfoModalOpen,
   onMarkerClick,
   onCloseModal,
 }) => {
-  const position: LatLngLiteral = { lat: 50.4501, lng: 30.5234 };
+  const centerPosition: LatLngLiteral = { lat: 50.4501, lng: 30.5234 };
   const place = data.find(item => item.id === activeId);
 
   return (
     <>
-      {isModalOpen
+      {isInfoModalOpen
         ? (
-            <Modal isOpen={isModalOpen} onClose={onCloseModal}>
+            <Modal isOpen={isInfoModalOpen} onClose={onCloseModal}>
               <div className='content'>
                 <h1>{place?.name}</h1>
 
                 <img
                   src={place?.photo}
                   alt="place_photo"
-                  className='modal__image'
+                  className='modal-info__image'
                 />
 
                 <p>{place?.description}</p>
@@ -51,9 +51,10 @@ export const MapBlock: React.FC<Props> = ({
         )
         : (
           <MapContainer
-            center={position}
+            center={centerPosition}
             zoom={13}
             style={{ height: '100%', width: '100%' }}
+            zoomControl={false}
           >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
